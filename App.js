@@ -39,17 +39,14 @@ class HomeScreen extends React.Component {
           </Text>
         </View>
         <View style={styles.body}>
-          {/* <Text style={styles.listHeaderText}>My List:</Text> */}
           <View style={styles.listContainer}>
             <FlatList
               data={this.state.theList}
               ItemSeparatorComponent={()=>(
-                <View style={{
-                  width: '100%', height: 1, backgroundColor: colors.primaryLight}}
+                <View style={styles.separator}
                 />
               )}
               renderItem={({item})=>{
-                console.log(item);
                 return(
                   <View style={styles.listItemContainer}>
                     <View style={styles.listItemTextContainer}> 
@@ -58,8 +55,12 @@ class HomeScreen extends React.Component {
                       </Text> 
                     </View>
                     <View style={styles.listItemButtonContainer}>
-                      <Ionicons name="md-create" size={24} color={colors.primaryDark} />
-                      <Ionicons name="md-trash" size={24} color={colors.primaryDark} />                    
+                      <Ionicons name="md-create" 
+                        size={24} 
+                        color={colors.primaryDark} />
+                      <Ionicons name="md-trash" 
+                        size={24} 
+                        color={colors.primaryDark} />                    
                     </View>
                   </View>
                 );

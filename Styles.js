@@ -15,13 +15,18 @@ export const styles = StyleSheet.create({
       alignItems: 'stretch',
       justifyContent: 'flex-start',
     },
+    separator: {
+        width: '100%', 
+        height: 1, 
+        backgroundColor: colors.primaryLight
+    },
     header: {
       flex: 0.1,
-      backgroundColor: colors.primary,
       justifyContent: 'flex-end',
       alignItems: 'center',
       width: '100%',
-      padding: 10
+      padding: 10,
+      backgroundColor: colors.primary,
     },
       headerText: {
         fontSize: 24,
@@ -32,7 +37,6 @@ export const styles = StyleSheet.create({
       justifyContent: 'center',
       width: '100%',
       padding: '5%',
-      //backgroundColor: 'lightgray'
     },
       listHeaderText: {
         fontSize: 16,
@@ -44,21 +48,19 @@ export const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         alignItems: 'stretch', // this turns out to be important!
         padding: 15,
-        //backgroundColor: 'tan'
       },
+        // Home Screen body
         listItemContainer: {
           flex: 1,
           flexDirection: 'row',
           alignItems: 'center',
           justifyContent: 'center',
           paddingVertical: 10,
-          //backgroundColor: 'blue'
         },
         listItemTextContainer: {
           flex: 0.8,
           flexDirection: 'row',
           justifyContent: 'flex-start',
-          //backgroundColor: 'pink'
         },
           listItemText: {
             fontSize: 18,
@@ -67,10 +69,9 @@ export const styles = StyleSheet.create({
           flex: 0.2,
           flexDirection: 'row',
           justifyContent: 'space-between',
-          //backgroundColor: 'lightblue'
         },
 
-        // Detail Screen
+        // Detail Screen body
         textInputContainer: {
           flex: 0.3,
           justifyContent: 'center',
@@ -92,8 +93,9 @@ export const styles = StyleSheet.create({
       flex: 0.2,
       justifyContent: 'flex-start',
       alignItems: 'center',
-      //backgroundColor: 'lightgreen'
     },
+
+      // Detail Screen footer
       footerButtonContainer: {
         flexDirection: 'row',
         justifyContent: 'space-around'
