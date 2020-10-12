@@ -15,6 +15,8 @@ class HomeScreen extends React.Component {
   constructor(props) {
     super(props);
 
+    console.log("in HomeScreen, route.params = ", props.route.params);
+
     this.nextKey = 0;
     this.state = {
       theList: [
@@ -28,6 +30,25 @@ class HomeScreen extends React.Component {
         },
       ]
     }
+  }
+
+  componentDidMount() {
+    this._unsubscribe = this.props.navigation.addListener('focus', this.onFocus);
+  }
+
+  onFocus = () => {
+    // check the current params
+    const {action, text, id} = this.props.route.params;
+    if (action === "add") {
+      this.addItem(text);
+    } else if (action === "edit") {
+      this.updateItem(id, text);
+    }
+    this.props.navigation.setParams({action: 'none'}); // make sure each action is only done once
+  }
+
+  addItem = (itemText) => {
+    console.log("now would add item, " + itemText);
   }
 
   render() {
@@ -70,7 +91,12 @@ class HomeScreen extends React.Component {
         </View>
         <View style={styles.footer}>
           <TouchableOpacity
-            onPress={()=>this.props.navigation.navigate('Detail')}
+            onPress={()=>
+              this.props.navigation.navigate(
+                'Detail', 
+                {
+                  mode: "add",
+                })}
           >
             <Ionicons name="md-add-circle" 
               size={80} 
@@ -86,6 +112,10 @@ class DetailScreen extends React.Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      inputText : ''
+    }
   }
 
   render() {
@@ -102,6 +132,7 @@ class DetailScreen extends React.Component {
             <TextInput
               placeholder='Enter item text'
               style={styles.textInputBox}
+              onChangeText={(text) => this.setState({inputText: text})}
             />
           </View>
         </View>
@@ -109,10 +140,20 @@ class DetailScreen extends React.Component {
           <View style={styles.footerButtonContainer}>
             <TouchableOpacity 
               style={styles.footerButton}
-              onPress={()=>{this.props.navigation.navigate("Home")}}>
+              onPress={()=>{this.props.navigation.navigate("Home"), {action: "none"}}}>
               <Text>Cancel</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.footerButton}>
+            <TouchableOpacity 
+              style={styles.footerButton}
+              onPress={()=>{
+                // TODO: check for empty string
+                this.props.navigation.navigate("Home", {
+                  action: 'add',
+                  text: this.state.inputText,
+                  id: -1,
+                  time: new Date().toLocaleString()
+                });
+              }}>
               <Text style={styles.footerButtonText}>Save</Text>
             </TouchableOpacity>
           </View>
