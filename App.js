@@ -42,9 +42,14 @@ class HomeScreen extends React.Component {
 
   onFocus = () => {
     if (this.props.route.params) {
-      const {itemText} = this.props.route.params;
-      this.addItem(itemText);
+      const {operation, item} = this.props.route.params;
+      if (operation === 'add') {
+        this.addItem(item.text);
+      } else if (operation === 'edit') {
+        this.updateItem(item.key, item.text);
+      } 
     }
+    this.props.navigation.setParams({operation: 'none'});
   }
 
   addItem = (itemText) => {
@@ -54,15 +59,31 @@ class HomeScreen extends React.Component {
     this.setState({theList: this.state.theList});
   }
 
+  updateItem = (itemKey, itemText) => {
+    let {theList} = this.state;
+    let foundIndex = -1;
+    for (let idx in theList) {
+      if (theList[idx].key === itemKey) {
+        foundIndex = idx;
+        break;
+      }
+    }
+    if (foundIndex !== -1) { // silently fail if item not found
+      theList[foundIndex].text = itemText;
+    }
+    this.setState({theList: theList});
+  }
+
   deleteItem = (itemKey) => {
     let {theList} = this.state;
     let foundIndex = -1;
     for (let idx in theList) {
       if (theList[idx].key === itemKey) {
         foundIndex = idx;
+        break;
       }
     }
-    if (foundIndex !== -1) {
+    if (foundIndex !== -1) { // silently fail if item not found
       theList.splice(foundIndex, 1); // remove one element 
     }
     this.setState({theList: theList});
@@ -70,6 +91,13 @@ class HomeScreen extends React.Component {
 
   onDelete = (itemKey) => {
     this.deleteItem(itemKey);
+  }
+
+  onEdit = (item) => {
+    this.props.navigation.navigate("Detail", {
+      operation: 'edit',
+      item: item
+    });
   }
 
   render() {
@@ -99,11 +127,12 @@ class HomeScreen extends React.Component {
                     <View style={styles.listItemButtonContainer}>
                       <Ionicons name="md-create" 
                         size={24} 
-                        color={colors.primaryDark} />
+                        color={colors.primaryDark}
+                        onPress={()=>{this.onEdit(item)}} />
                       <Ionicons name="md-trash" 
                         size={24} 
                         color={colors.primaryDark}
-                        onPress={()=>{this.onDelete(item.key)}} />                    
+                        onPress={()=>{this.onDelete(item.key)}} />
                     </View>
                   </View>
                 );
@@ -114,12 +143,8 @@ class HomeScreen extends React.Component {
         <View style={styles.footer}>
           <TouchableOpacity
             onPress={()=>
-              this.props.navigation.navigate(
-                'Detail', 
-                {
-                  mode: "add",
-                })}
-          >
+              this.props.navigation.navigate('Detail', 
+                {operation: "add"})}>
             <Ionicons name="md-add-circle" 
               size={80} 
               color={colors.primaryDark} />
@@ -135,8 +160,15 @@ class DetailScreen extends React.Component {
   constructor(props) {
     super(props);
 
+    this.operation = this.props.route.params.operation;
+
+    let initText = '';
+    if (this.operation === 'edit') {
+      initText = this.props.route.params.item.text;
+    }
+
     this.state = {
-      inputText : ''
+      inputText: initText
     }
   }
 
@@ -150,11 +182,13 @@ class DetailScreen extends React.Component {
         </View>
         <View style={styles.body}>
           <View style={styles.textInputContainer}>
-            <Text style={styles.textInputLabel}>Add Item</Text>
+            <Text style={styles.textInputLabel}>
+              {this.operation === 'add'? "Add" : "Edit"} Item</Text>
             <TextInput
               placeholder='Enter item text'
               style={styles.textInputBox}
               onChangeText={(text) => this.setState({inputText: text})}
+              value={this.state.inputText}
             />
           </View>
         </View>
@@ -168,8 +202,19 @@ class DetailScreen extends React.Component {
             <TouchableOpacity 
               style={styles.footerButton}
               onPress={()=>{
+                let theItem = {};
+                if (this.operation === 'add') {
+                  theItem = {
+                    text: this.state.inputText,
+                    key: -1 // placeholder for "no ID"
+                  }
+                } else { // operation === 'edit'
+                  theItem = this.props.route.params.item;
+                  theItem.text = this.state.inputText;
+                }
                 this.props.navigation.navigate("Home", {
-                  itemText: this.state.inputText,
+                  operation: this.operation,
+                  item: theItem
                 });
               }}>
               <Text style={styles.footerButtonText}>Save</Text>
