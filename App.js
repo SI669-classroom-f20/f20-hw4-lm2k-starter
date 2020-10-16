@@ -33,23 +33,27 @@ class HomeScreen extends React.Component {
   }
 
   componentDidMount() {
-    this._unsubscribe = this.props.navigation.addListener('focus', this.onFocus);
+    this.focusUnsubscribe = this.props.navigation.addListener('focus', this.onFocus);
+  }
+
+  componentWillUnmount() {
+    this.focusUnsubscribe();
   }
 
   onFocus = () => {
-    // check the current params
-    const {action, text, id} = this.props.route.params;
-    if (action === "add") {
-      this.addItem(text);
-    } else if (action === "edit") {
-      this.updateItem(id, text);
+    if (this.props.route.params) {
+      const {itemText} = this.props.route.params;
+      this.addItem(itemText);
     }
-    this.props.navigation.setParams({action: 'none'}); // make sure each action is only done once
   }
 
   addItem = (itemText) => {
-    console.log("now would add item, " + itemText);
+    if (itemText) { // false if undefined
+      this.state.theList.push({text: itemText, key: '' + this.nextKey++});
+    }  
+    this.setState({theList: this.state.theList});
   }
+
 
   render() {
     return (
@@ -140,18 +144,14 @@ class DetailScreen extends React.Component {
           <View style={styles.footerButtonContainer}>
             <TouchableOpacity 
               style={styles.footerButton}
-              onPress={()=>{this.props.navigation.navigate("Home"), {action: "none"}}}>
+              onPress={()=>{this.props.navigation.navigate("Home")}}>
               <Text>Cancel</Text>
             </TouchableOpacity>
             <TouchableOpacity 
               style={styles.footerButton}
               onPress={()=>{
-                // TODO: check for empty string
                 this.props.navigation.navigate("Home", {
-                  action: 'add',
-                  text: this.state.inputText,
-                  id: -1,
-                  time: new Date().toLocaleString()
+                  itemText: this.state.inputText,
                 });
               }}>
               <Text style={styles.footerButtonText}>Save</Text>
