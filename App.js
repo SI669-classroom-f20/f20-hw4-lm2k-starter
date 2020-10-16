@@ -54,6 +54,23 @@ class HomeScreen extends React.Component {
     this.setState({theList: this.state.theList});
   }
 
+  deleteItem = (itemKey) => {
+    let {theList} = this.state;
+    let foundIndex = -1;
+    for (let idx in theList) {
+      if (theList[idx].key === itemKey) {
+        foundIndex = idx;
+      }
+    }
+    if (foundIndex !== -1) {
+      theList.splice(foundIndex, 1); // remove one element 
+    }
+    this.setState({theList: theList});
+  }
+
+  onDelete = (itemKey) => {
+    this.deleteItem(itemKey);
+  }
 
   render() {
     return (
@@ -85,7 +102,8 @@ class HomeScreen extends React.Component {
                         color={colors.primaryDark} />
                       <Ionicons name="md-trash" 
                         size={24} 
-                        color={colors.primaryDark} />                    
+                        color={colors.primaryDark}
+                        onPress={()=>{this.onDelete(item.key)}} />                    
                     </View>
                   </View>
                 );
