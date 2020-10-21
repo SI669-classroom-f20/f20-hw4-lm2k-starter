@@ -20,16 +20,7 @@ class HomeScreen extends React.Component {
 
     this.nextKey = 0;
     this.state = {
-      theList: [
-        {
-          text: "Get milk",
-          key: '' + this.nextKey++
-        },
-        {
-          text: "Call mom",
-          key: '' + this.nextKey++,
-        },
-      ]
+      theList: []
     }
   }
 
