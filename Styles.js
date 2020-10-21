@@ -2,10 +2,10 @@
 import { StyleSheet } from 'react-native';
 
 export const colors = {
-    primary: '#CDDC39', // MD Lime 500
-    primaryDark: '#9E9D24', // MD Lime 900
-    primaryLight: '#E6EE9C', // MD Lime 200
-    outline: '#AAA'
+    primary: '#FFC107', // MD Amber 500
+    primaryDark: '#A1887F', // MD Brown 300
+    primaryLight: '#FFE082', // MD Amber 200
+    outline: '#BDBDBD' // MD Gray 400
   }
 
 export const styles = StyleSheet.create({

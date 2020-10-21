@@ -9,6 +9,7 @@ import { styles, colors } from './Styles';
 
 
 const Stack = createStackNavigator();
+const appName = "ListMaker 2000";
 
 class HomeScreen extends React.Component {
 
@@ -105,7 +106,7 @@ class HomeScreen extends React.Component {
       <View style={styles.container}>
         <View style={styles.header}>
           <Text style={styles.headerText}>
-            ListMaker 1000
+            {appName}
           </Text>
         </View>
         <View style={styles.body}>
@@ -177,7 +178,7 @@ class DetailScreen extends React.Component {
       <View style={styles.container}>
         <View style={styles.header}>
           <Text style={styles.headerText}>
-            ListMaker 1000
+            {appName}
           </Text>
         </View>
         <View style={styles.body}>
