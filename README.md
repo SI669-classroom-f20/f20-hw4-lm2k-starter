@@ -34,9 +34,7 @@ The ListMaker 2000 (LM2K) app is already fully functioning in terms of CRUD with
 | 4 | Create operations result in correct changes to Firestore DB, and these changes are reflected after the app restarts | 25 |
 | 5 | Update operations result in correct changes to Firestore DB, and these changes are reflected after the app restarts | 25 |
 | 6 | Delete operations result in correct changes to Firestore DB, and these changes are reflected after the app restarts | 25 |
-| 7 |  
-HomeScreen displays a “list empty” message when there are no items in the list.
- | 15 |
+| 7 |  HomeScreen displays a “list empty” message when there are no items in the list.| 15 |
 |   | **Total** | **120**
 
 ## Extra Credit
@@ -49,8 +47,6 @@ See the [Demo Video] for an example of how these should work.
 | No. | Requirement  | Points |
 | --- | ------------- | ------------- |
 | 1 | Save button is visually “greyed out” to indicate it is disabled when there is no text in the details screen text box | 1  |
-| 2 |  
-Save button does not receive clicks and does not operate (data is not saved, no navigation occurs) when there is no text in the details screen box
- | 1 |
+| 2 |  Save button does not receive clicks and does not operate (data is not saved, no navigation occurs) when there is no text in the details screen box | 1 |
 | 3 | A confirmation dialog is displayed when the user tries to delete an item, and the delete only occurs if the user confirms the operation. | 2 |
 |   | **Total** | **4**
