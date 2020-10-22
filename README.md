@@ -45,6 +45,7 @@ The ListMaker 2000 (LM2K) app is already fully functioning in terms of CRUD with
 For extra credit you can 
 * make it so that the “Save” button in the details screen is disabled if there is no text in the text box.
 * present a confirmation dialogue when the user tries to delete an item, and only deletes the item if the user confirms
+
 See the [Demo Video](https://youtu.be/xDLquY98oVI) for an example of how these should work.
 
 ## Grading (up to 4 points)
