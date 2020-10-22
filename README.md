@@ -25,6 +25,9 @@ The ListMaker 2000 (LM2K) app is already fully functioning in terms of CRUD with
 ## Notes
 * Be sure to show that the effects of all types of data modification (create, update, delete) persist across app launches.
 * :exclamation: You don't need to show the Firebase console in your video as the one in Demo Videos. Showing just your phone screen will be adequate.
+* You will want to `get()` data from Firebase *after* the constructor has run, i.e., in `componentDidMount()`. Initialize the data model (`this.state.theList`) to an empty list in the constructor and then update it with the data from Firebase using `setState()` in `componentDidMount()`. This will save you some headaches! Your "empty list" message may flash on the screen briefly before the list loads--this is OK for this assignment.
+* You may get an error telling you that a Firebase 'app' has already been initialized. There are cases where, almost no matter where you put it, the statement `firebase.initializeApp(firebaseConfig)` will be executed more than once, producing this error. See [this article](https://github.com/vercel/next.js/issues/1999) or [this one](https://stackoverflow.com/questions/43331011/firebase-app-named-default-already-exists-app-duplicate-app) for advice on how to guard against this.
+* Be sure to put your Firebase Config information in a 'secret' file, and be sure to exclude that file from your git repo by updating your `.gitconfig`.
 
 ## Grading (up to 120 points)
 | No. | Requirement  | Points |
