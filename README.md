@@ -2,7 +2,7 @@
 **SI669 Fall 2020**
 
 ## Video Walkthrough
-See the [Demo Video].
+See the [Demo Video](https://youtu.be/bdeskk3JXYk).
 
 ## Learning Goals
 This homework will give you practice working with CRUD and Firebase.
@@ -41,12 +41,12 @@ The ListMaker 2000 (LM2K) app is already fully functioning in terms of CRUD with
 For extra credit you can 
 * make it so that the “Save” button in the details screen is disabled if there is no text in the text box
 * present a confirmation dialogue when the user tries to delete an item, and only deletes the item if the user confirms
-See the [Demo Video] for an example of how these should work.
+See the [Demo Video](https://youtu.be/xDLquY98oVI) for an example of how these should work.
 
 ## Grading (up to 4 points)
 | No. | Requirement  | Points |
 | --- | ------------- | ------------- |
 | 1 | Save button is visually “greyed out” to indicate it is disabled when there is no text in the details screen text box | 1  |
 | 2 |  Save button does not receive clicks and does not operate (data is not saved, no navigation occurs) when there is no text in the details screen box | 1 |
-| 3 | A confirmation dialog is displayed when the user tries to delete an item, and the delete only occurs if the user confirms the operation. | 2 |
+| 3 | A confirmation dialog is displayed when the user tries to delete an item, and the delete only occurs if the user confirms the operation | 2 |
 |   | **Total** | **4**
