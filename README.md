@@ -24,6 +24,7 @@ The ListMaker 2000 (LM2K) app is already fully functioning in terms of CRUD with
 
 ## Notes
 * Be sure to show that the effects of all types of data modification (create, update, delete) persist across app launches.
+* :exclamation: You don't need to show the Firebase console in your video as the one in Demo Videos. Showing just your phone screen will be adequate.
 
 ## Grading (up to 120 points)
 | No. | Requirement  | Points |
