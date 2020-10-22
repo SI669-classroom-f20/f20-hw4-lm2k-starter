@@ -11,7 +11,7 @@ This homework will give you practice working with CRUD and Firebase.
 The ListMaker 2000 (LM2K) app is already fully functioning in terms of CRUD within the app’s memory (this is effectively the same as week7ListMaker1000 with no dummy data, a different name, and a different color scheme). Your goal is to connect LM2K to Firebase, so that all changes made in the app are made persistent across launches of the app.
 
 ## What to Do
-1. ccept the GitHub Classroom invitation.
+1. Accept the GitHub Classroom invitation.
 2. Clone this repo to your local machine.
 3. `cd` into the directory that was created when you cloned the repo (it should be called `hw4-listmaker2000-<your-github-id>`).
 4. Run `yarn install` to install all dependencies.
@@ -34,12 +34,12 @@ The ListMaker 2000 (LM2K) app is already fully functioning in terms of CRUD with
 | 4 | Create operations result in correct changes to Firestore DB, and these changes are reflected after the app restarts | 25 |
 | 5 | Update operations result in correct changes to Firestore DB, and these changes are reflected after the app restarts | 25 |
 | 6 | Delete operations result in correct changes to Firestore DB, and these changes are reflected after the app restarts | 25 |
-| 7 |  HomeScreen displays a “list empty” message when there are no items in the list.| 15 |
+| 7 |  HomeScreen displays a “list empty” message when there are no items in the list | 15 |
 |   | **Total** | **120**
 
 ## Extra Credit
 For extra credit you can 
-* make it so that the “Save” button in the details screen is disabled if there is no text in the text box
+* make it so that the “Save” button in the details screen is disabled if there is no text in the text box.
 * present a confirmation dialogue when the user tries to delete an item, and only deletes the item if the user confirms
 See the [Demo Video](https://youtu.be/xDLquY98oVI) for an example of how these should work.
 
